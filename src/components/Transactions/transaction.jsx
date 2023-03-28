@@ -1,20 +1,7 @@
 import './Transactions.module.css';
 import PropTypes from 'prop-types';
+import { createColor } from 'servises/utils';
 
-const createColor = () => {
-    const color =
-        'rgba(' +
-        Math.round(Math.random() * 255) +
-        ',' +
-        Math.round(Math.random() * 255) +
-        ',' +
-        Math.round(Math.random() * 255) +
-        ',' +
-        0.2 +
-        ')';
-
-    return color;
-};
 
 export const TransactionHistory = ({ items }) => {
     return (
@@ -43,8 +30,12 @@ export const TransactionHistory = ({ items }) => {
 };
 
 TransactionHistory.propTypes = {
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    amount: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        amount: PropTypes.string.isRequired,
+        currency: PropTypes.string.isRequired,
+    })
+    ).isRequired
+
 };
